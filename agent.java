@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /*
  * To change this template, choose Tools | Templates
@@ -26,18 +27,36 @@ public class agent {
     {
         geometry = new geom[parents[0].geometry.length];
         int cut = (int) (Math.random()*geometry.length);
+        
+        if(normal)
+            cut = (int) (r.nextGaussian()*geometry.length/2+geometry.length/4)%geometry.length;
+        
+        
         for(int ct=0;ct<geometry.length;ct++)
         {
             geometry[ct] = parents[ct<cut?0:1].geometry[ct];
             if(Math.random()<mutation)
                 geometry[ct] = new rectangle();
         }
+        
+        mutation = parents[0].mutation;
+        normal = parents[0].normal;
     }
     public agent()
     {
         geometry = new geom[10000/4];
         for(int ct=0;ct<geometry.length;ct++)
             geometry[ct] = new rectangle();
+    }
+    
+    public agent(int genes, double mutation, boolean normal)
+    {
+        geometry = new geom[genes];
+        for(int ct=0;ct<geometry.length;ct++)
+            geometry[ct] = new rectangle();
+        
+        this.mutation = mutation;
+        this.normal = normal;
     }
     
     public double score()
@@ -100,7 +119,8 @@ public class agent {
     }
     
     geom geometry[];
-    public static double mutation = .01;
+    public double mutation = .01;
+    boolean normal;
     
-    
+    public static Random r = new Random();
 }
