@@ -34,9 +34,9 @@ public class sfiLogo {
     
     public static void main(String args[])
     {
-        for(int y=0;y<131;y++)
+        for(int y=0;y<120;y++)
         {
-            for(int x=0;x<131;x++)
+            for(int x=0;x<120;x++)
             {
                 if(getColor(x,y))
                     System.out.print("X");

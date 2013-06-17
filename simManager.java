@@ -19,7 +19,8 @@ public class simManager {
     {
         for(int iterations = 0; iterations < 5; iterations++)
         {
-            for(int genes = 250; genes < 10000; genes *= 2)
+            //for(int genes = 250; genes < 10000; genes *= 2)
+            int genes = 1500;
             {
                 for(double mutation = .5; mutation > 0.001; mutation/=5){
                 for(int normal = 0; normal < 2; normal++)
@@ -37,7 +38,7 @@ public class simManager {
     }
     static BlockingQueue<simulation> queue = new LinkedBlockingQueue();
     
-    static private class process implements Runnable
+    static protected class process implements Runnable
     {
 
         @Override

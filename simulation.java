@@ -16,20 +16,30 @@ import javax.swing.JFrame;
  * @author toddbodnar
  */
 public class simulation {
-    public simulation(int agents, int genes, double mutation, int iteration, boolean normalSplit)
+    public simulation(int agents, int genes, double mutation, int iteration, boolean normalSplit, int draw, String prefix,int rounds)
     {
         AgentCount = agents;
         GeneCount = genes;
         MutationRate = mutation;
         iter = iteration;
         normalCrossOver = normalSplit;
+        this.prefix = prefix;
+        drawMod = draw;
+        this.rounds = rounds;
+    }
+    public simulation(int agents, int genes, double mutation, int iteration, boolean normalSplit)
+    {
+        this(agents,genes,mutation,iteration,normalSplit,100,"",2500);
     }
     int AgentCount, GeneCount, iter;
     boolean normalCrossOver;
     double MutationRate;
+    String prefix;
+    int drawMod;
+    int rounds = 2500;
     public void run() throws Exception
     {
-        File directory = new File("./results/"+AgentCount+"_"+GeneCount+"_"+MutationRate+"_"+normalCrossOver+"_"+iter+"/");
+        File directory = new File("./results/"+prefix+AgentCount+"_"+GeneCount+"_"+MutationRate+"_"+normalCrossOver+"_"+iter+"/");
         
         directory.mkdirs();
         
@@ -39,7 +49,7 @@ public class simulation {
         agent current[] = new agent[AgentCount];
         for(int ct=0;ct<current.length;ct++)
             current[ct]=new agent(GeneCount, MutationRate, normalCrossOver);
-        for(int round=0;round<2501;round++)
+        for(int round=0;round<rounds+1;round++)
         {
             agent agents[] = new agent[current.length];
             
@@ -70,10 +80,10 @@ public class simulation {
             jf.setVisible(round%100==0);
             jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
             
-            if(round%100==0)
+            if(round%drawMod==0)
             {
-                BufferedImage output = new BufferedImage(1000,1000,BufferedImage.TYPE_BYTE_BINARY);
-                current[0].draw(output.getGraphics(), 500);
+                BufferedImage output = new BufferedImage(2500,2500,BufferedImage.TYPE_BYTE_BINARY);
+                current[0].draw(output.getGraphics(), 1250);
                 ImageIO.write(output, "GIF", new File(directory.toString()+"/"+round+".gif"));
             }
         }

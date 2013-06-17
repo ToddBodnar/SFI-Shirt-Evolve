@@ -67,7 +67,7 @@ public class agent {
         for(int i=0;i<127;i++)
             for(int j=0;j<127;j++)
             {
-                if((image.getRGB(i, j) == -1)==sfiLogo.getColor(i, j)) //if...white?
+                if((image.getRGB(i, j) == -1)!=sfiLogo.getColor(i, j)) //if...white?
                     count++;
                 
             //    System.out.println(image.getRGB(i, j));

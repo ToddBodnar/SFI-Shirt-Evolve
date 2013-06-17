@@ -16,6 +16,7 @@ public class rectangle implements geom{
     public rectangle()
     {
         this((float)Math.random()*2,(float)Math.random()*2,(float)Math.random()/10,(float)Math.random()/10);
+        //this((float)Math.random()*2,(float)Math.random()*2,(float)Math.random()/10/2,(float)Math.random()/10/2);
     }
     public rectangle(float x, float y, float w, float h)
     {
