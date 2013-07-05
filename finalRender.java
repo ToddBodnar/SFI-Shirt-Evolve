@@ -19,7 +19,7 @@ public class finalRender extends simManager{
                         queue.add(new simulation(80,500,.5,iterations,true,1,"final_",10000));
                         queue.add(new simulation(80,250,.004,iterations,false,1,"final_",10000));
                         queue.add(new simulation(80,250,.1,iterations,true,1,"final_",10000));
-                        
+                  
                         queue.add(new simulation(80,250,.5,iterations,true,1,"final_",10000));
                         queue.add(new simulation(80,1000,.02,iterations,false,1,"final_",10000));
                         queue.add(new simulation(80,1000,.1,iterations,true,1,"final_",10000));
